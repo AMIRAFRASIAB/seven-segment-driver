@@ -48,8 +48,9 @@ static uint8_t __sevenSegDecoder (const char CHAR) {
 
 /* Public APIs */
 //----------------------------------------------------------------------------------------
-bool sevenSegment_init (sevenSeg_t* p7seg) {
+bool sevenSegment_init (sevenSeg_t* p7seg, writePin_Fn driver) {
   if (
+      driver == NULL ||
       p7seg->ram == NULL || (p7seg->ramSize * 2) < p7seg->NUM_OF_DIGITS ||
       p7seg->COMMONS == NULL ||
       p7seg->SIGNALS == NULL || 
@@ -68,6 +69,7 @@ bool sevenSegment_init (sevenSeg_t* p7seg) {
   memset(p7seg->ram, 0x00, p7seg->ramSize);
   p7seg->refreshCounter = 0;
   p7seg->initFlag = status;
+  p7seg->writePin = driver;
   return status;
 }
 //----------------------------------------------------------------------------------------
@@ -87,9 +89,20 @@ void sevenSegment_refresh (sevenSeg_t* p7seg) {
     return;
   }
   p7seg->refreshCounter = (p7seg->refreshCounter >= p7seg->NUM_OF_DIGITS - 1)? 0 : p7seg->refreshCounter + 1;
-  //Disable All Common Outputs
-  //Write Data
-  //Enable Single Output pin
+  /* Disable All Common Outputs To Avoid UnWanted Refreshes */
+  for (uint8_t i = 0; i < p7seg->NUM_OF_DIGITS; i++) {
+    p7seg->writePin(p7seg->COMMONS[i], (p7seg->commonType == pinActiveType_High)? false : true);
+  }
+  /* Write Data To Signal Pins */
+  uint8_t writeData = __sevenSegDecoder(p7seg->ram[p7seg->refreshCounter]);
+  if (p7seg->signalType == pinActiveType_Low) {
+    writeData = ~writeData ;
+  }
+  for (uint8_t i = 0; i < 7; i++) {
+    p7seg->writePin(p7seg->SIGNALS[i], (writeData & (1 << i)) != 0);
+  }
+  /* Enable Single Common Output Pin */
+  p7seg->writePin(p7seg->COMMONS[p7seg->refreshCounter], (p7seg->commonType == pinActiveType_High)? true : false);
 }
-
+//----------------------------------------------------------------------------------------
 

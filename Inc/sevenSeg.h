@@ -17,8 +17,12 @@ typedef enum {
   pinActiveType_Low     = 0x01,
 } pinActiveType_e;
 
+typedef void (*writePin_Fn) (const vio_t* VIO, bool status);
 
 typedef struct {
+  /* Methods */
+  writePin_Fn       writePin;
+  /* Members */
   const vio_t**     SIGNALS;
   const vio_t**     COMMONS;
   char*             ram;

@@ -1,6 +1,6 @@
 
 #include "sevenSeg.h"
-
+#include "stm32f4xx_ll_gpio.h"
 
 static const vio_t* _7SEG_SIGNAL_PINS[] = {
   &VIO_7SEG_A,
@@ -35,3 +35,12 @@ sevenSeg_t sevenSeg = {
   .refreshCounter   = 0,
 };
 
+/* Driver Implementation */
+void sevenSegwritePin (const vio_t* VIO, bool status) {
+  if (status == true) {
+    LL_GPIO_SetOutputPin(LL_VIO((*VIO)));
+  }
+  else {
+    LL_GPIO_ResetOutputPin(LL_VIO((*VIO)));
+  }
+}
