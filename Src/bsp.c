@@ -6,8 +6,20 @@
 
 /*             NAME       = { PORT      PIN       MODE              AF      SPEED           PULL        OUTTYPE }; */
 /*-----------------------------------------------------------------------------------------------------------------*/
-const vio_t VIO_MAX232_TX = { PORT(B)   PIN(6)    MODE(ALTERNATE)   AF(7)   SPEED(LOW)      PULL(NO)    TYPE(PUSHPULL)  };
-const vio_t VIO_MAX232_RX = { PORT(B)   PIN(7)    MODE(ALTERNATE)   AF(7)   SPEED(LOW)      PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_A    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_B    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_C    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_D    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_E    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_F    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_G    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_H    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+
+const vio_t VIO_7SEG_C0   = { PORT(C)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_C1   = { PORT(C)   PIN(1)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_C2   = { PORT(C)   PIN(2)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_C3   = { PORT(C)   PIN(3)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+
 
 //------------------------------------------------------------------------------------------------------------------------
 /* Static APIs */
