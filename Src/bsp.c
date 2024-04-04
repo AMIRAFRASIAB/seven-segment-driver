@@ -7,18 +7,18 @@
 /*             NAME       = { PORT      PIN       MODE              AF      SPEED           PULL        OUTTYPE }; */
 /*-----------------------------------------------------------------------------------------------------------------*/
 const vio_t VIO_7SEG_A    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
-const vio_t VIO_7SEG_B    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
-const vio_t VIO_7SEG_C    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
-const vio_t VIO_7SEG_D    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
-const vio_t VIO_7SEG_E    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
-const vio_t VIO_7SEG_F    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
-const vio_t VIO_7SEG_G    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
-const vio_t VIO_7SEG_H    = { PORT(A)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_B    = { PORT(A)   PIN(1)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_C    = { PORT(A)   PIN(2)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_D    = { PORT(A)   PIN(3)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_E    = { PORT(A)   PIN(4)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_F    = { PORT(A)   PIN(5)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_G    = { PORT(A)   PIN(6)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_H    = { PORT(A)   PIN(7)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
 
-const vio_t VIO_7SEG_C0   = { PORT(C)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
-const vio_t VIO_7SEG_C1   = { PORT(C)   PIN(1)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
-const vio_t VIO_7SEG_C2   = { PORT(C)   PIN(2)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
-const vio_t VIO_7SEG_C3   = { PORT(C)   PIN(3)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_C0   = { PORT(B)   PIN(0)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_C1   = { PORT(B)   PIN(1)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_C2   = { PORT(B)   PIN(2)    MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
+const vio_t VIO_7SEG_C3   = { PORT(B)   PIN(10)   MODE(OUTPUT)      AF(7)   SPEED(MEDIUM)   PULL(NO)    TYPE(PUSHPULL)  };
 
 
 //------------------------------------------------------------------------------------------------------------------------

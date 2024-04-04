@@ -37,6 +37,16 @@ typedef struct {
 
 
 
+/* Public APIs */
+bool sevenSegment_init (sevenSeg_t* p7seg, writePin_Fn driver);
+void sevenSegment_write (sevenSeg_t* p7seg, const char* STR);
+void sevenSegment_refresh (sevenSeg_t* p7seg);
+
+/* Exported Objects */
+extern sevenSeg_t sevenSeg;
+extern void sevenSegwritePin (const vio_t* VIO, bool status);
+
+
 
 #ifdef __cplusplus
   };
