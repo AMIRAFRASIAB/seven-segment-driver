@@ -32,15 +32,16 @@ typedef struct {
   const uint8_t     NUM_OF_LEDS;
   uint8_t           refreshCounter;
   uint8_t           ramSize;
+  uint8_t           stack[2];
   bool              initFlag;
 } sevenSeg_t;
 
 
 
 /* Public APIs */
-bool sevenSegment_init (sevenSeg_t* p7seg, writePin_Fn driver);
-void sevenSegment_write (sevenSeg_t* p7seg, const char* STR);
-void sevenSegment_refresh (sevenSeg_t* p7seg);
+bool   sevenSegment_init (sevenSeg_t* p7seg, writePin_Fn driver);
+bool   sevenSegment_write (sevenSeg_t* p7seg, const char* STR);
+void   sevenSegment_refresh (sevenSeg_t* p7seg);
 
 /* Exported Objects */
 extern sevenSeg_t sevenSeg;

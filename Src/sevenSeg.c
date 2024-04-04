@@ -66,6 +66,7 @@ bool sevenSegment_init (sevenSeg_t* p7seg, writePin_Fn driver) {
   for (uint8_t i = 0; i < p7seg->NUM_OF_DIGITS; i++) {
     status = status && vio_init(p7seg->COMMONS[i], true);
   }
+  memset(p7seg->stack, 0x00, 2);
   memset(p7seg->ram, 0x00, p7seg->ramSize);
   p7seg->refreshCounter = 0;
   p7seg->initFlag = status;
@@ -73,32 +74,64 @@ bool sevenSegment_init (sevenSeg_t* p7seg, writePin_Fn driver) {
   return status;
 }
 //----------------------------------------------------------------------------------------
-void sevenSegment_write (sevenSeg_t* p7seg, const char* STR) {
+bool sevenSegment_write (sevenSeg_t* p7seg, const char* STR) {
   if (strlen(STR) >= p7seg->ramSize || p7seg->initFlag == false) {
-    return;
+    return false;
+  }
+  if (STR[0] == '.') {
+    return false;
+  }
+  uint8_t dotCounter = 0;
+  uint8_t charCounter = 0;
+  bool priorWasDot = false;
+  for (uint8_t i = 0; i < strlen(STR); i++) {
+    if (STR[i] == '.') {
+      if (priorWasDot == true) {
+        return false;
+      }
+      dotCounter++;
+      priorWasDot = true;
+    }
+    else {
+      priorWasDot = false;
+      charCounter++;
+    }
+  }
+  if (dotCounter > p7seg->NUM_OF_DIGITS || charCounter < p7seg->NUM_OF_DIGITS) {
+    return false;
   }
   for (uint8_t i = 0; i < p7seg->ramSize; i++) {
     p7seg->ram[i] = toupper(STR[i]);
   }
   p7seg->ram[p7seg->ramSize - 1] = '\0';
   p7seg->refreshCounter = 0;
+  p7seg->stack[0] = 0;
+  return true;
 }
 //----------------------------------------------------------------------------------------
 void sevenSegment_refresh (sevenSeg_t* p7seg) {
   if (p7seg->initFlag == false) {
     return;
   }
-  p7seg->refreshCounter = (p7seg->refreshCounter >= p7seg->NUM_OF_DIGITS - 1)? 0 : p7seg->refreshCounter + 1;
+  p7seg->refreshCounter++;
+  if (p7seg->refreshCounter >= p7seg->NUM_OF_DIGITS) {
+    p7seg->refreshCounter = 0;
+    p7seg->stack[0] = 0;
+  }
   /* Disable All Common Outputs To Avoid UnWanted Refreshes */
   for (uint8_t i = 0; i < p7seg->NUM_OF_DIGITS; i++) {
     p7seg->writePin(p7seg->COMMONS[i], (p7seg->commonType == pinActiveType_High)? false : true);
   }
   /* Write Data To Signal Pins */
-  uint8_t writeData = __sevenSegDecoder(p7seg->ram[p7seg->refreshCounter]);
+  uint8_t writeData = __sevenSegDecoder(p7seg->ram[p7seg->stack[0]++]);
+  if (p7seg->stack[0] < p7seg->ramSize - 1 && p7seg->ram[p7seg->stack[0]] == '.') {
+    p7seg->stack[0]++;
+    writeData |= 1 << 7;
+  }
   if (p7seg->signalType == pinActiveType_Low) {
     writeData = ~writeData ;
   }
-  for (uint8_t i = 0; i < 7; i++) {
+  for (uint8_t i = 0; i < 8; i++) {
     p7seg->writePin(p7seg->SIGNALS[i], (writeData & (1 << i)) != 0);
   }
   /* Enable Single Common Output Pin */
