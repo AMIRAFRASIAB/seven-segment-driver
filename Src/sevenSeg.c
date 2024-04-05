@@ -119,6 +119,12 @@ static uint8_t __sevenSegDecoder (const char CHAR) {
     case ' ':
       ans = 0x00;
       break;
+    case '-':
+      ans = 0x40;
+      break;
+    case '_':
+      ans = 0x08;
+      break;
   };
   return ans;
 }
